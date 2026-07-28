@@ -1,0 +1,166 @@
+<meta charset="UTF-8">
+  
+    <title>Check Internet</title>
+<style>
+
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#eef5ff,#d8e7ff);
+}
+
+.container{
+    width:430px;
+    background:#fff;
+    border-radius:20px;
+    padding:35px;
+    text-align:center;
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+}
+
+.icon{
+    font-size:90px;
+    margin-bottom:20px;
+    transition:.4s;
+}
+
+.title{
+    font-size:34px;
+    margin-bottom:20px;
+    font-weight:bold;
+}
+
+ul{
+    text-align:left;
+    margin:25px auto;
+    width:90%;
+    color:#555;
+}
+
+ul li{
+    margin:12px 0;
+    font-size:17px;
+}
+
+.reload{
+    margin-top:15px;
+    padding:12px 30px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    font-size:17px;
+    font-weight:bold;
+    background:#3b82f6;
+    color:white;
+    transition:.3s;
+}
+
+.reload:hover{
+    background:#2563eb;
+    transform:translateY(-2px);
+}
+
+.hide{
+    display:none;
+}
+
+
+
+</style>
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/iconoir@7.11.0/css/iconoir.min.css">
+
+
+</head>
+<body>
+
+    <div class="container">
+          <i class="iconoir-wifi icon" id="wifiIcon"></i>
+        <h2 class="title">Offline Now</h2>
+        <ul>
+            <li>Checking the connection</li>
+            <li>Checking the proxy and the firewall</li>
+            <li>Running Windows Network Diagnostics</li>
+        </ul>
+        <button class="reload">reload</button>
+    </div>
+
+
+
+
+
+
+
+
+<script>
+
+let title=document.querySelector('.title');
+let ul=document.querySelector('ul');
+let reload=document.querySelector('.reload');
+
+window.onload=function(){
+    if(window.navigator.onLine){
+        onLine()
+    }
+    else{
+        offLine()
+    }
+}
+window.addEventListener("online",function(){
+    onLine();
+});
+window.addEventListener("offline",function(){
+    offLine();
+});
+
+reload.onclick = function () {
+    window.location.reload();
+}
+function onLine(){
+
+    title.innerHTML = "Online Now";
+    title.style.color = "#16a34a";
+
+    wifiIcon.className = "iconoir-wifi icon";
+    wifiIcon.style.color = "#16a34a";
+
+    ul.classList.add("hide");
+    reload.classList.add("hide");
+}
+
+
+function offLine(){
+
+    title.innerHTML = "Offline Now";
+    title.style.color = "#666";
+
+      wifiIcon.className = "iconoir-wifi icon";
+    wifiIcon.style.color = "#888";
+
+    ul.classList.remove("hide");
+    reload.classList.remove("hide");
+}
+
+
+
+</script>
+
+
+
+
+</body>
